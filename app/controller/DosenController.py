@@ -125,4 +125,19 @@ def ubah(id):
         return response.success(input, 'Success Update Data !')
     
     except Exception as e:
-        return(e)
+        print(e)
+
+#hapus data dosen
+def hapus(id):
+    try:
+        dosen = Dosen.query.filter_by(id=id).first()
+        if not dosen:
+            return response.badRequest([], 'Data Dosen Kosong...!!')
+        
+        db.session.delete(dosen)
+        db.session.commit()
+
+        return response.success('', 'Berhasil Menghapus Data Dosen...!')
+
+    except Exception as e:
+        print(e)    
