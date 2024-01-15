@@ -1,8 +1,11 @@
 from app import app
+from app.controller import DosenController
+
 
 @app.route('/')
 def index():
     return 'Hello Flask App'
 
-def ini():
-    return 'hello kawan'
+@app.route('/dosen', methods=['GET'])
+def dosens():
+    return DosenController.index()
