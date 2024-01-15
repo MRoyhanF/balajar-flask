@@ -95,3 +95,34 @@ def save():
         return response.success('', 'Sukses Menambahkan Data Dosen')
     except Exception as e:
         print(e)
+
+#update data dosen
+def ubah(id):
+    try:
+        nidn = request.form.get('nidn')
+        nama = request.form.get('nama')
+        phone = request.form.get('phone')
+        alamat = request.form.get('alamat')
+
+        input = [
+            {
+                'nidn' : nidn,
+                'nama' : nama,
+                'phone' : phone,
+                'alamat' : alamat
+            }
+        ]
+        
+        dosen = Dosen.query.filter_by(id=id).first()
+
+        dosen.nidn = nidn
+        dosen.nama = nama
+        dosen.phone = phone
+        dosen.alamat = alamat
+
+        db.session.commit()
+
+        return response.success(input, 'Success Update Data !')
+    
+    except Exception as e:
+        return(e)
