@@ -9,3 +9,7 @@ def index():
 @app.route('/dosen', methods=['GET'])
 def dosens():
     return DosenController.index()
+
+@app.route('/dosen/<id>', methods=['GET'])
+def dosenDetail(id):
+    return DosenController.detail(id)
