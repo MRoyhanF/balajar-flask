@@ -4,6 +4,7 @@ from app.model.mahasiswa import Mahasiswa
 from app import response, app, db
 from flask import request
 
+#function mengambil data dosen
 def index():
     try:
         dosen = Dosen.query.all()
@@ -32,6 +33,7 @@ def singleObject(data):
 
     return data
 
+#function mengambil data dosen by ID
 def detail(id):
     try:
         dosen = Dosen.query.filter_by(id=id).first()
@@ -77,3 +79,19 @@ def formatMahasiswa(data):
     for i in data:
         array.append(singleMahasiswa(i))
     return array
+
+#menambahkan data dosen
+def save():
+    try :
+        nidn = request.form.get('nidn')
+        nama = request.form.get('nama')
+        phone = request.form.get('phone')
+        alamat = request.form.get('alamat')
+
+        dosen = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat)
+        db.session.add(dosen)
+        db.session.commit()
+
+        return response.success('', 'Sukses Menambahkan Data Dosen')
+    except Exception as e:
+        print(e)
