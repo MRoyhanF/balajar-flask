@@ -2,7 +2,8 @@ from app.model.user import User
 
 from app import response, app, db
 from flask import request
-from flask_jwt_extended import *
+from flask_jwt_extended import create_access_token, create_refresh_token
+import datetime
 
 def buatAdmin():
     try :
