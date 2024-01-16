@@ -11,9 +11,9 @@ def index():
     try:
         dosen = Dosen.query.all()
         data = formatArray(dosen)
-        res = response.success(data, "success")
-        return data, res
-        #return response.success(data, "success")
+        #res = response.success(data, "success")
+        #return data, res
+        return response.success(data, "success")
         #return render_tamplate("dosen.html", )
     except Exception as e:
         print(e)
@@ -93,11 +93,20 @@ def save():
         phone = request.form.get('phone')
         alamat = request.form.get('alamat')
 
+        input = [
+            {
+                'nidn' : nidn,
+                'nama' : nama,
+                'phone' : phone,
+                'alamat' : alamat
+            }
+        ]
+
         dosen = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat)
         db.session.add(dosen)
         db.session.commit()
 
-        return response.success('', 'Sukses Menambahkan Data Dosen')
+        return response.success(input, 'Sukses Menambahkan Data Dosen')
     except Exception as e:
         print(e)
 
