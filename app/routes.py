@@ -33,3 +33,7 @@ def dosenDetail(id):
     else:
         return DosenController.hapus(id)
 
+#login
+@app.route('/login', methods=['POST'])
+def logins():
+    return UserController.login()
