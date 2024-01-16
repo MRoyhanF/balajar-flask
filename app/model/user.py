@@ -7,6 +7,7 @@ class User(db.Model):
     name = db.Column(db.String(250), nullable=False)
     email = db.Column(db.String(60), index=True, unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
+    level = db.Column(db.BigInteger, nullable=False)
     create_at = db.Column(db.DateTime, default=datetime.utcnow)
     update_at = db.Column(db.DateTime, default=datetime.utcnow)
 

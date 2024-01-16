@@ -1,6 +1,6 @@
 from app import app
 from app.controller import DosenController
-from flask import request
+from flask import request, render_template
 
 
 @app.route('/')
@@ -10,7 +10,9 @@ def index():
 @app.route('/dosen', methods=['GET', 'POST'])
 def dosens():
     if request.method == 'GET':
-        return DosenController.index()
+        cont = DosenController.index()[0]
+        print(cont)
+        return render_template("dosen.html", dosens= cont)  
     else:
         return DosenController.save()
 

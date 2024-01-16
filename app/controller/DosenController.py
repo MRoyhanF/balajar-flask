@@ -1,4 +1,6 @@
 from app.model.dosen import Dosen
+
+from flask import render_template
 from app.model.mahasiswa import Mahasiswa
 
 from app import response, app, db
@@ -9,7 +11,10 @@ def index():
     try:
         dosen = Dosen.query.all()
         data = formatArray(dosen)
-        return response.success(data, "success")
+        res = response.success(data, "success")
+        return data, res
+        #return response.success(data, "success")
+        #return render_tamplate("dosen.html", )
     except Exception as e:
         print(e)
 
